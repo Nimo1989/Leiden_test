@@ -83,27 +83,28 @@ for i in range(638,len(items)):
     soup = BeautifulSoup(r.text, "lxml")
     # 获取字典的标签内容
     #s = soup.find(class_='base-word')('ul')[0]('li')
-
-    s = soup.find(class_='clearfix')('ul')[0]('li')
-    if soup.find(class_='phonetic')!=None:
+    if soup.find(class_='clearfix')!=None:
     
-        s1 = soup.find(class_='phonetic').text
+        s = soup.find(class_='clearfix')('ul')[0]('li')
+        if soup.find(class_='phonetic')!=None:
         
-        
-        # pattern = re.compile(r"F\(a\((.*)\), a\((.*)\)\)")
-        pattern = re.compile(r'[\[](.*?)[\]]',re.S)
-        match = re.findall(pattern,s1)
-    #    print(word)
-    #    print(match)
-        with open(r'wocabulary.txt','a') as f:
-            f.write(word +"\n")
-            f.write(str(match) +"\n")
-        # 输出字典的具体内容
-        for item in s:
-            if item.text:
-                with open(r'wocabulary.txt','a') as f:              
-                    f.write(item.text +"\n")
-        with open(r'wocabulary.txt','a') as f:        
-            f.write(' '+"\n")
-            f.write(' '+"\n")
-    #    print('='*40+'\n')
+            s1 = soup.find(class_='phonetic').text
+            
+            
+            # pattern = re.compile(r"F\(a\((.*)\), a\((.*)\)\)")
+            pattern = re.compile(r'[\[](.*?)[\]]',re.S)
+            match = re.findall(pattern,s1)
+        #    print(word)
+        #    print(match)
+            with open(r'wocabulary.txt','a') as f:
+                f.write(word +"\n")
+                f.write(str(match) +"\n")
+            # 输出字典的具体内容
+            for item in s:
+                if item.text:
+                    with open(r'wocabulary.txt','a') as f:              
+                        f.write(item.text +"\n")
+            with open(r'wocabulary.txt','a') as f:        
+                f.write(' '+"\n")
+                f.write(' '+"\n")
+        #    print('='*40+'\n')
